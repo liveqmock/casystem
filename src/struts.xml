@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="strutsqs" extends="json-default">
+		<!-- 用户注册 -->
+		<action name="registerapi" class="ca.core.action.UserRegister">
+			<result type="json"/>
+		</action>
+		<!-- 用户查询 -->
+		<action name="userqueryapi" class="ca.core.action.UserQuery">
+			<result type="json"/>
+		</action>
+		<!-- 用户修改 -->
+		<action name="usermodifyapi" class="ca.core.action.UserModify">
+			<result type="json"/>
+		</action>
+        <!-- 用户检查 -->
+        <action name="chkuserapi" class="ca.core.action.UserRegister" method="checkUser">
+            <result type="json"/>
+        </action>
+		<!-- 用户登录 -->
+		<action name="loginapi" class="ca.core.action.UserLogin">
+			<result type="json"/>
+		</action>
+		<!-- 用户退出 -->
+		<action name="logoutapi" class="ca.core.action.UserLogout">
+			<result type="json"/>
+		</action>
+        <!-- 获取子局信息，以及备案，报检概要信息 -->
+        <action name="initinfapi" class="ca.core.action.UserLogin" method="initinf">
+            <result type="json"/>
+        </action>
+		<!-- ******************************************************* -->
+		<!-- 厂家注册 -->
+		<action name="vendoraddapi" class="ca.core.action.VendorAdd">
+			<result type="json"/>
+		</action>
+		<!-- 厂家查询 -->
+		<action name="vendorqueryapi" class="ca.core.action.VendorQuery">
+			<result type="json"/>
+		</action>
+		<!-- 厂家修改 -->
+		<action name="vendormodifyapi" class="ca.core.action.VendorModify">
+			<result type="json"/>
+		</action>
+		
+		<!-- ******************************************************* -->
+		<!-- 授权方注册 -->
+		<action name="authaddapi" class="ca.core.action.AuthAdd">
+			<result type="json"/>
+		</action>
+		<!-- 授权方查询 -->
+		<action name="authqueryapi" class="ca.core.action.AuthQuery">
+			<result type="json"/>
+		</action>
+		<!-- 授权方修改 -->
+		<action name="authmodifyapi" class="ca.core.action.AuthModify">
+			<result type="json"/>
+		</action>
+		
+		<!-- ******************************************************* -->
+		<!-- Ipnspect 增加 -->
+		<action name="inspectaddapi" class="ca.core.action.InspectAdd">
+			<result type="json"/>
+		</action>
+		<!-- 查询 -->
+		<action name="inspectqueryapi" class="ca.core.action.InspectQuery">
+			<result type="json"/>
+		</action>
+		<!-- 修改 -->
+		<action name="inspectmodifyapi" class="ca.core.action.InspectModify">
+			<result type="json"/>
+		</action>
+		<action name="inspectdeleteapi" class="ca.core.action.InspectModify" method="delete">
+            <result type="json"/>
+		</action>
+		<!-- ******************************************************* -->
+		<!-- 厂家商品类型增加 -->
+		<action name="vptypeaddapi" class="ca.core.action.VPTypeAdd">
+			<result type="json"/>
+		</action>
+        <!-- 厂家商品类型删除 -->
+        <action name="vptypedelapi" class="ca.core.action.VPTypeDel">
+            <result type="json"/>
+        </action>
+		<!-- 厂家商品类型查询 -->
+		<action name="vptypequeryapi" class="ca.core.action.VPTypeQuery">
+			<result type="json"/>
+		</action>
+		<!-- 厂家商品类型修改 -->
+		<action name="vptypemodifyapi" class="ca.core.action.VPTypeModify">
+			<result type="json"/>
+		</action>
+		<action name="vptypeapplyapi" class="ca.core.action.VPTypeAdd" method="apply">
+			<result type="json"/>
+		</action>
+		
+		<!-- ******************************************************* -->
+		<!-- MF1标签认证 -->
+		<action name="ntagapi" class="ca.core.action.MF1TagCheck">
+			<result type="json"/>
+		</action>
+		<!-- C码标签认证 -->
+		<action name="ccodeapi" class="ca.core.action.CTagCheck">
+			<result type="json"/>
+		</action>
+        <action name="tcodeapi" class="ca.core.action.CTagCheck" method="tcodeAuth">
+            <result type="json"/>
+        </action>
+		
+		<!-- ******************************************************* -->
+		<!-- 防伪标签查询 -->
+		<action name="idqueryapi" class="ca.core.action.TagQuery">
+			<result type="json"/>
+		</action>
+		<!-- CA防伪标签购买 -->
+		<action name="buytagapi" class="ca.core.action.TagBuy">
+			<result type="json"/>
+		</action>
+		<!-- CA防伪标签交易记录查询 -->
+		<action name="tagdealqueryapi" class="ca.core.action.TagDealQuery">
+			<result type="json"/>
+		</action>
+		<!-- 商品批次查询 -->
+		<action name="batchqueryapi" class="ca.core.action.BatchQuery">
+			<result type="json"/>
+		</action>
+        <!-- 商品批次新增 -->
+        <action name="addbatchapi" class="ca.core.action.BatchModify" method="addBatch">
+            <result type="json"/>
+        </action>
+        <action name="deletebatchapi" class="ca.core.action.BatchModify" method="deleteBatch">
+            <result type="json"/>
+        </action>
+		<!-- 查询所有未报检的商品生产批次 -->
+		<action name="batchqueryinspectapi" class="ca.core.action.BatchQuery" method="inspectBatch">
+			<result type="json"/>
+		</action>
+		<!-- 商品批次修改 -->
+		<action name="batchmodifyapi" class="ca.core.action.BatchModify">
+			<result type="json"/>
+		</action>
+        <action name="batchmodifybyinspectid" class="ca.core.action.BatchModify" method="modifyBatchByInspectId">
+            <result type="json"/>
+        </action>
+		<!-- CA防伪标签使用申请 -->
+		<action name="tagapplyapi" class="ca.core.action.TagApply">
+			<result type="json"/>
+		</action>
+		<!-- CA防伪标签使用申请 -->
+		<action name="tagapply2api" class="ca.core.action.TagApply2">
+			<!-- result type="json"/  -->
+			<result name="success" type="stream">
+				<param name="contentType">text</param>
+				<param name="inputName">targetFile</param>
+				<!-- 文件名在targetFile中包含，这里filename为空即可 -->
+				<param name="contentDisposition">filename=""</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+        <!-- CA防伪标签使用申请 -->
+        <action name="tagapply3api" class="ca.core.action.TagApply2" method="tagApply3">
+            <!-- result type="json"/  -->
+            <result name="success" type="stream">
+                <param name="contentType">text</param>
+                <param name="inputName">targetFile</param>
+                <!-- 文件名在targetFile中包含，这里filename为空即可 -->
+                <param name="contentDisposition">filename=""</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+		<!-- CA防伪标签使用申请 -->
+		<action name="tagdownloadapi" class="ca.core.action.TagDownload">
+			<result name="success" type="stream">
+				<param name="contentType">text</param>
+				<param name="inputName">targetFile</param>
+				<!-- 文件名在targetFile中包含，这里filename为空即可 -->
+				<param name="contentDisposition">filename=""</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+        <action name="tagdownload2api" class="ca.core.action.TagDownload" method="tagDownload">
+            <result name="success" type="stream">
+                <param name="contentType">text</param>
+                <param name="inputName">targetFile</param>
+                <!-- 文件名在targetFile中包含，这里filename为空即可 -->
+                <param name="contentDisposition">filename=""</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+
+		<!-- CA防伪标签使用确定 -->
+		<action name="tagconfirmapi" class="ca.core.action.TagConfirm">
+			<result type="json"/>
+		</action>
+		
+		<!-- 物流接口定义 -->
+		<action name="logisticsaddapi" class="ca.core.action.LogisticsAction" method="logisticsAdd">
+			<result type="json"/>
+		</action>
+		<action name="logisticsqueryapi" class="ca.core.action.LogisticsAction" method="logisticsQry">
+			<result type="json"/>
+		</action>
+		<action name="logisticsmodifyapi" class="ca.core.action.LogisticsAction" method="logisticsMod">
+			<result type="json"/>
+		</action>
+        <action name="logisticsquerybyinspectapi" class="ca.core.action.LogisticsAction" method="logisticsQrybyinspect">
+            <result type="json"/>
+        </action>
+        <action name="vptypequerybyinspectapi" class="ca.core.action.LogisticsAction" method="vptypeQrybyinspect">
+            <result type="json"/>
+        </action>
+        <!--APP定制显示接口  -->
+        <action name="appformataddapi" class="ca.core.action.APPFormatAction" method="add">
+            <result type="json"/>
+        </action>
+        <action name="appformatdelapi" class="ca.core.action.APPFormatAction" method="delete">
+            <result type="json"/>
+        </action>
+        <action name="appformatqueryapi" class="ca.core.action.APPFormatAction" method="query">
+            <result type="json"/>
+        </action>
+        <action name="appformatmodifyapi" class="ca.core.action.APPFormatAction" method="modify">
+            <result type="json"/>
+        </action>
+        <action name="appformatmergeapi" class="ca.core.action.APPFormatAction" method="merge">
+            <result type="json"/>
+        </action>
+        <!--邮件提醒接口  -->
+        <action name="mailqueryapi" class="ca.core.action.MailLogAction" method="query">
+            <result type="json"/>
+        </action>
+        <action name="mailmodifyapi" class="ca.core.action.MailLogAction" method="modify">
+            <result type="json"/>
+        </action>
+        <!--报表接口  -->
+        <action name="rptapi" class="ca.core.action.ReportAction" method="query_rpt">
+            <result type="json"/>
+        </action>
+	</package>
+</struts>   

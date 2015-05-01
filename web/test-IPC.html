@@ -1,0 +1,175 @@
+<html>
+  <head>
+    <script type="text/javascript">
+	var xmlHttp,token;
+	function init()
+	{
+		if(window.ActiveXObject)
+		{
+			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		else if(window.XMLHttpRequest)
+		{
+			xmlHttp = new XMLHttpRequest();
+		}
+	}
+	
+	
+	function login()
+	{
+		if (xmlHttp == null)
+			init();
+		var user = document.getElementById("user").value;
+		var passwd = document.getElementById("passwd").value;
+		var hosturl = document.getElementById("host").value;
+		var url = hosturl + "loginapi.action";
+		xmlHttp.open("post", url, true);
+		xmlHttp.onreadystatechange = handleLogin;
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xmlHttp.send("json={\"Username\":'" + user +"', 'Password':'" + passwd +"'}");
+
+	}
+	function handleLogin()
+	{
+		if(xmlHttp.readyState == 4)
+		{
+			token = xmlHttp.getResponseHeader("CA-Token");
+			
+			if (token == null)
+				alert("登录失败！");
+			else
+				alert("登录成功！\n\t CA-Token：" + token );
+		}
+	}	
+
+	function apply()
+	{
+		if (xmlHttp == null)
+			init();
+		var typeId = document.getElementById("typeId").value;
+		var deviceId = document.getElementById("deviceId").value;
+		var applyCount = document.getElementById("applyCount").value;
+		var hosturl = document.getElementById("host").value;
+		var url = hosturl + "tagapply2api.action";
+		xmlHttp.open("post", url, true);
+		xmlHttp.onreadystatechange = handleApply;
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xmlHttp.setRequestHeader("CA-Token", token);
+		xmlHttp.send("json={'TypeID':" + typeId + ", 'ProductCount':'" 
+							+ applyCount + "', 'DeviceID':'"+ deviceId +"'}");
+	}
+	function handleApply()
+	{
+		if(xmlHttp.readyState == 4)
+		{
+			parseResults();
+		}
+	}
+	
+	function confirm()
+	{
+		if (xmlHttp == null)
+			init();
+		var typeId = document.getElementById("typeId").value;
+		var deviceId = document.getElementById("deviceId").value;
+		var confirmCount = document.getElementById("confirmCount").value;
+		var hosturl = document.getElementById("host").value;
+		var followAction = document.getElementById("followAction").value;
+		var startProductID = document.getElementById("startProductID").value;
+		var url = hosturl + "tagconfirmapi.action";
+		xmlHttp.open("post", url, true);
+		xmlHttp.onreadystatechange = handleConfirm;
+		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		xmlHttp.setRequestHeader("CA-Token", token);
+		xmlHttp.send("json={'TypeID':'" + typeId + "','StartProductID':'" + startProductID 
+					+ "','ProductCount':'" + confirmCount + "','DeviceID':'" + deviceId 
+					+ "','FollowAction':'"+followAction+"'}");
+	}
+	function handleConfirm()
+	{
+		if(xmlHttp.readyState == 4)
+		{
+			parseResults();
+		}
+	}
+	
+
+	function parseResults()
+	{
+		document.getElementById("myDiv").innerHTML = xmlHttp.responseText;
+	} 
+</script>
+  </head>
+  <body>
+ <!-- <button type="button" onclick="xml()">Init</button> -->
+    <table border="0" id="table1">
+      <tr>
+  		<td width="100">服务器地址:</td>
+  		<td width="300px">
+  			<input name="host" id="host" value ="http://192.168.0.233:8080/casystem/">
+<!--  			<input type="hidden" name="host" id="host" value =""> -->
+  		</td>
+  	  </tr>
+      <tr>
+  		<td width="100">用户名:</td>
+  		<td width="300px">
+  			<input name="user" id="user" value="testt1@ca01">
+  		</td>
+  	  </tr>
+  	  <tr>
+   		<td width="100">密码:</td>
+  		<td width="300px">
+  			<input name="passwd" id="passwd" value="123456">
+  	    </td>
+  	  </tr>
+    </table>
+        <button type="button" onclick="login()">Login</button>
+  
+    <table border="0" id="table2">
+    <tr>
+  		<td width="100">设备ID:</td>
+  		<td width="300px">
+  			<input name="deviceId" id="deviceId">
+  		</td>
+  	</tr>
+    <tr>
+  		<td width="100">商品类型ID：</td>
+  		<td width="300px">
+  			<input name="typeId" id="typeId">
+  		</td>
+  	</tr>
+  	<tr>
+   		<td width="100">申请数量：</td>
+  		<td width="300px">
+  			<input name="applyCount" id="applyCount">
+  		</td>
+  	<tr>
+
+  </table>
+   	<button type="button" onclick="apply()">Apply</button>
+  
+  <table border="0" id="table3">
+  	<tr>
+   		<td width="100">起始ID：</td>
+  		<td width="300px">
+  			<input name="startProductID" id="startProductID">
+  		</td>
+  	</tr>
+  	<tr>
+   		<td width="100">确认数量：</td>
+  		<td width="300px">
+  			<input name="confirmCount" id="confirmCount">
+  		</td>
+  	</tr>
+  	<tr>
+   		<td width="100">FollowAction：</td>
+  		<td width="300px">
+  			<input name="followAction" id="followAction" value="1">
+  		</td>
+  	</tr>
+  </table>
+  <button type="button" onclick="confirm()">Confirm</button>
+	<div id="myDiv"></div>
+
+  </body>
+</html>
